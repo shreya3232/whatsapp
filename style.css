@@ -29,6 +29,108 @@ body {
     margin-left: 30px; /* Add a margin to the left side of the element with ID "my-element" */
     padding-right: 40px; /* Add padding to the right side of the element with ID "my-element" */
   }
-  .navbar-nav{
-    margin-left: 10px;
+  .navbar-brand {
+    /* vertical-align: middle; */
+    border-style: none;
+    height: -webkit-fill-available;
   }
+  /* // Generate series of `.navbar-expand-*` responsive classes for configuring
+  // where your navbar collapses. */
+  .navbar {
+    flex-direction: row;
+    background: dimgray;
+    font-size: larger;
+  }
+  .navbar-expand {
+    @each $breakpoint in map-keys($grid-breakpoints) {
+      $next: breakpoint-next($breakpoint, $grid-breakpoints);
+      $infix: breakpoint-infix($next, $grid-breakpoints);
+  
+      /* // stylelint-disable-next-line scss/selector-no-union-class-name */
+        &#{$infix} {
+        @include media-breakpoint-up($next) {
+          flex-wrap: nowrap;
+          justify-content: flex-start;
+  
+          .navbar-nav {
+            flex-direction: row;
+            background: dimgray;
+            font-size: larger;
+  
+            .dropdown-menu {
+              position: absolute;
+            }
+  
+            .nav-link {
+              padding-right: var(--#{$prefix}navbar-nav-link-padding-x);
+              padding-left: var(--#{$prefix}navbar-nav-link-padding-x);
+            }
+          }
+  
+          .navbar-nav-scroll {
+            overflow: visible;
+          }
+  
+          .navbar-collapse {
+            display: flex !important; // stylelint-disable-line declaration-no-important
+            flex-basis: auto;
+          }
+  
+          .navbar-toggler {
+            display: none;
+          }
+  
+          .offcanvas {
+            // stylelint-disable declaration-no-important
+            position: static;
+            z-index: auto;
+            flex-grow: 1;
+            width: auto !important;
+            height: auto !important;
+            visibility: visible !important;
+            background-color: transparent !important;
+            border: 0 !important;
+            transform: none !important;
+            @include box-shadow(none);
+            @include transition(none);
+            // stylelint-enable declaration-no-important
+  
+            .offcanvas-header {
+              display: none;
+            }
+  
+            .offcanvas-body {
+              display: flex;
+              flex-grow: 0;
+              padding: 0;
+              overflow-y: visible;
+            }
+          }
+        }
+      }
+    }
+  }
+.navbar-nav{
+    margin: auto;
+    letter-spacing: 0.1rem;
+    margin-left: 30px;
+}
+* {
+    box-sizing: border-box
+}
+.image-slideshow {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+img {
+  width: 100%
+}
+.fade {
+  animation-name: fade;
+  animation-duration: 2s;
+}
+@keyframes fade {
+  from {opacity: .5}
+  to {opacity: 1}
+}

@@ -17,7 +17,8 @@
           "overflow: clip",
           "-webkit-text-size-adjust",
           "width: fit-content",
-          "-webkit-tap-highlight-color"
+          "-webkit-tap-highlight-color",
+          "user-select"
         ]
       }
     ],
